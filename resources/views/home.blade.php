@@ -12,7 +12,7 @@
                     @foreach($posts as $post)
                         <a class="nav-link text-dark" href="{{route('comments.show',['comment'=>$post])}}">
                             <div class="media">
-                               <img class="media-object image rounded-circle mr-2" src={{asset('/storage/images/'.$post->user->image)}} alt="">
+                               <img class="media-object image rounded-circle mr-2" src={{asset('images/'.$post->user->image)}} alt="">
                                 <div class="media-body">
                                     <h3 class="media-heading">{{$post->topic}}</h3>
                                     <h4 class="media-heading">{{$post->user->name}}</h4>

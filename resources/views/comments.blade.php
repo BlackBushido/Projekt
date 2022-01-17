@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12 bg-gradient">
                     <div class="media">
-                        <img class="media-object image rounded-circle mr-2" src={{asset('/storage/images/'.$post['user']->image)}} alt="">
+                        <img class="media-object image rounded-circle mr-2" src={{asset('images/'.$post['user']->image)}} alt="">
                         <div class="media-body">
                             <h3 class="media-heading">{{$post['topic']}}</h3>
                             <h4 class="media-heading">{{$post['user']->name}}</h4>
@@ -35,7 +35,7 @@
                     </div>
                 @foreach($comments as $comment)
                     <div style="background-color: lightblue" class="media mt-2">
-                        <img class="media-object image rounded-circle mr-2" src={{asset('/storage/images/'.$comment->user->image)}} alt="">
+                        <img class="media-object image rounded-circle mr-2" src={{asset('images/'.$comment->user->image)}} alt="">
                         <div class="media-body">
                             <h4 class="media-heading">{{$comment->user->name}}</h4>
                             <p>{{$post['comment']}}</p>

@@ -14,7 +14,7 @@
                             </div>
                         @endif
                         Email: {{Auth::user()->email}}<br>
-                        Avatar: <img class="image rounded-circle" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                        Avatar: <img class="image rounded-circle" src="{{asset('images/'.Auth::user()->image)}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
                     </div>
                     <div class="card-body">
                         <span>Zmień avatar:</span>
