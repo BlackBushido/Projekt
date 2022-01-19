@@ -5,8 +5,11 @@
 <section class="content-item" id="comments">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12  bg-gradient">
-
+            <div class="col-sm-12 mx-auto bg-gradient">
+                <form style="text-align: center"  action="{{ route('searchPosts')}}" method="GET">
+                    <input type="text" name="search" required/>
+                    <button type="submit">Wyszukaj</button>
+                </form>
                 <!-- POSTS - START -->
                 @if(!$posts->isEmpty())
                     @foreach($posts as $post)

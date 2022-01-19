@@ -8,6 +8,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 bg-gradient">
+                <form style="text-align: center"  action="{{ route('searchComments', ['id'=>$post['id']])}}" method="GET">
+                    <input type="text" name="search" required/>
+                    <button type="submit">Wyszukaj</button>
+                </form>
                     <div class="media">
                         <img class="media-object image rounded-circle mr-2" src={{asset('images/'.$post['user']->image)}} alt="">
                         <div class="media-body">
@@ -38,7 +42,7 @@
                         <img class="media-object image rounded-circle mr-2" src={{asset('images/'.$comment->user->image)}} alt="">
                         <div class="media-body">
                             <h4 class="media-heading">{{$comment->user->name}}</h4>
-                            <p>{{$post['comment']}}</p>
+                            <p>{{$comment->comment}}</p>
                             <ul class="list-unstyled list-inline media-detail pull-left">
                                 <li><i class="fa fa-calendar"></i>{{$comment->created_at}}</li>
                             </ul>

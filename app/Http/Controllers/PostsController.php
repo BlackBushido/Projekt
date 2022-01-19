@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use function PHPUnit\Framework\isEmpty;
 
 class PostsController extends Controller
 {
@@ -122,5 +124,21 @@ class PostsController extends Controller
             return redirect()->route('home');
         }
         else return back();
+    }
+
+    public function search(Request $request){
+        // Get the search value from the request
+        $search = $request->input('search');
+        $user= User::query()->where('name', 'LIKE',"%{$search}%")->get();
+        $posts = Post::query()
+            ->where('topic', 'LIKE', "%{$search}%")
+            ->orWhere('comment', 'LIKE', "%{$search}%")
+            ->get();
+
+        for($i = 0; $i<count($posts); $i+=1){
+            $posts[$i]['commentsCount'] = Comment::where('post_id',$posts[$i]->id)->count();
+        }
+
+        return view('home',['posts'=>$posts]);
     }
 }

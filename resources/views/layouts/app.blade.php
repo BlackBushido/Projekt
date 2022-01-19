@@ -38,7 +38,7 @@
         <nav   class=" navbar navbar-expand-md navbar-light bg-green shadow-sm">
             <div  class="container">
                 <a class=" navbar-brand navbar-text  h1 text-dark" href="{{ url('/') }}">
-                    <i  class="fas fa-tractor h1"></i>
+                    <i  class="fas fa-tractor fa-2x"></i>
                     <span style="font-size: xx-large" class="h1 ">Forum rolnicze</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

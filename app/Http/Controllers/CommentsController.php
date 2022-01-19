@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use PhpParser\Node\Scalar\String_;
+use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\returnCallback;
 
 class CommentsController extends Controller
@@ -128,5 +130,18 @@ class CommentsController extends Controller
             return redirect()->back();
         }
         else return back();
+    }
+
+    public function search(Request $request, $id){
+        $search = $request->input('search');
+        $post=Post::findOrFail($id);
+        $post['commentsCount'] = Comment::where('post_id',$post->id)->count();
+        $data=$post->only(['id','user_id','topic','user','created_at','comment','commentsCount']);
+        $comments = Comment::query()->where('post_id','LIKE',$id )
+            ->Where('comment', 'LIKE', "%{$search}%")
+            ->orWhere('')
+            ->get();
+        // Return the search view with the resluts compacted
+        return view('comments',['post'=>$data, 'comments'=>$comments]);
     }
 }

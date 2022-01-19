@@ -13,10 +13,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -36,7 +32,7 @@ class HomeController extends Controller
     {
         if($request->hasFile('image')){
             $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('images',$filename,'public');
+            $request->image->move(public_path('images'),$filename);
             Auth()->user()->update(['image'=>$filename]);
         }
         return redirect()->back();

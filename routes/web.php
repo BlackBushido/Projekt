@@ -14,19 +14,13 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-    if(\Illuminate\Support\Facades\Auth::user() == null)
-        return redirect()->route('welcome');
-    else
-        return redirect()->route('home');
-
-});
+Route::get('/',[\App\Http\Controllers\HomeController::class ,'index']);
 
 Auth::routes();
 
-Route::get('/welcome', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+Route::resource('/comments', '\App\Http\Controllers\CommentsController');
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', [\App\Http\Controllers\UserController::class, 'index'])->name('profile');
     Route::get('/create', [\App\Http\Controllers\PostsController::class, 'create'])->name('create');
     Route::post('/create', [\App\Http\Controllers\PostsController::class, 'store'])->name('store');
@@ -35,8 +29,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update/{id}', [\App\Http\Controllers\PostsController::class, 'update'])->name('update');
     Route::post('/home', '\App\Http\Controllers\HomeController@upload');
 
-    Route::resource('/comments', '\App\Http\Controllers\CommentsController');
     Route::get('delComment', [\App\Http\Controllers\CommentsController::class, 'destroy'])->name('delComment');
 
     Route::resource('/change-password', '\App\Http\Controllers\ChangePasswordController');
 });
+
+Route::get('/searchPosts', '\App\Http\Controllers\PostsController@search')->name('searchPosts');
+Route::get('/searchComments/{id}', '\App\Http\Controllers\CommentsController@search')->name('searchComments');
