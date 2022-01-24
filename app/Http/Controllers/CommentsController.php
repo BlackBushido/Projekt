@@ -139,7 +139,6 @@ class CommentsController extends Controller
         $data=$post->only(['id','user_id','topic','user','created_at','comment','commentsCount']);
         $comments = Comment::query()->where('post_id','LIKE',$id )
             ->Where('comment', 'LIKE', "%{$search}%")
-            ->orWhere('')
             ->get();
         // Return the search view with the resluts compacted
         return view('comments',['post'=>$data, 'comments'=>$comments]);

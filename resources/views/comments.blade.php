@@ -37,6 +37,7 @@
                             @endauth
                         </div>
                     </div>
+                @if(!$comments->isEmpty())
                 @foreach($comments as $comment)
                     <div style="background-color: lightblue" class="media mt-2">
                         <img class="media-object image rounded-circle mr-2" src={{asset('images/'.$comment->user->image)}} alt="">
@@ -63,6 +64,9 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <h1 style="text-align: center">Brak komentarzy</h1>
+                @endif
                 <div class="footer-button text-md-center">
                     <a href="{{ route('comments.create',['id'=>$post['id']]) }}" class="btn btn-secondary mt-2">Dodaj komentarz</a>
                 </div>
